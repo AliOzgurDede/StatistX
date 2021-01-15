@@ -11,10 +11,10 @@ This application is for achieving data analysis objectives that are in college p
 ## Features
 
 1. Descriptive Statistics Module
-	Revealing the information about a data set with analytical approach: 
-		*Calculating particular parameters 
-		*Plotting histogram
-		*Executing chi-square based frequency tests for types of distributions
+Revealing the information about a data set with analytical approach: 
+Calculating particular parameters 
+Plotting histogram
+Executing chi-square based frequency tests for types of distributions
 
 2. Inferential Statistics Module
 Investigating whether the sample data represents the population data or not.
