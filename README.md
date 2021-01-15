@@ -16,13 +16,13 @@ This application is for achieving data analysis objectives that are in college p
 		*Plotting histogram
 		*Executing chi-square based frequency tests for types of distributions
 
-	2. Inferential Statistics Module
-	Investigating whether the sample data represents the population data or not.
+2. Inferential Statistics Module
+Investigating whether the sample data represents the population data or not.
 
-	3. Time Series Analysis Module
-	Tracking a data set beyond time 
-	Constructing linear regression models and viewing moving averages graph
-	Analyzing correlation between two data sets
+3. Time Series Analysis Module
+Tracking a data set beyond time 
+Constructing linear regression models and viewing moving averages graph
+Analyzing correlation between two data sets
 
 ## Used Technologies
 Visual Studio
