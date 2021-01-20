@@ -14,17 +14,13 @@ This application is for achieving data analysis objectives that are in college p
 1. Descriptive Statistics Module  
 Revealing the information about a data set with analytical approach: Calculating particular parameters, Plotting histogram, Executing chi-square based frequency tests for types of distributions  
 
-<img width="600" alt="DescriptiveStatistics ScreenShot" src="https://user-images.githubusercontent.com/74831928/104773003-6adbf900-5785-11eb-8627-dd8f701cfd55.JPG">
-
 2. Inferential Statistics Module  
 Investigating whether the sample data represents the population data or not.  
-
-<img width="500" alt="InferentialStatistics ScreenShot" src="https://user-images.githubusercontent.com/74831928/104773844-bc38b800-5786-11eb-920f-39f0df42ec2c.JPG">
 
 3. Time Series Analysis Module  
 Tracking a data set beyond time, Constructing linear regression models and viewing moving averages graph, Analyzing correlation between two data sets  
 
-<img width="300" alt="TimeSeriesAnalysis ScreenShot2" src="https://user-images.githubusercontent.com/74831928/104774226-58fb5580-5787-11eb-8930-721ba8e70b3c.JPG">  
+<img width="600" alt="DescriptiveStatistics ScreenShot" src="https://user-images.githubusercontent.com/74831928/104773003-6adbf900-5785-11eb-8627-dd8f701cfd55.JPG">  
 
 <img width="600" alt="TimeSeriesAnalysis ScreenShot" src="https://user-images.githubusercontent.com/74831928/104773702-83004800-5786-11eb-88e1-3344a2587750.JPG">
 
