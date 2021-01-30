@@ -342,7 +342,14 @@ namespace StatisticsApp
 
         void ViewingHelp()
         {
+            string TestingInfo;
+            TestingInfo = "Testing Information\nFor testing the distribution of data, chi-square based frequency tests are used";
+            string InputInfo;
+            InputInfo = "Input Information\nData entry can be done in two ways \n1. Manual data entry to the grid \n2. Pasting the previously copied content from clipboard. Before pasting the content, appropriate number of rows have to be added on datagrid";
+            string TechInfo;
+            TechInfo = ".NET Framework 4.7.2";
 
+            MessageBox.Show(TestingInfo + "\n\n" + InputInfo + "\n\n" + TechInfo);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -427,14 +434,7 @@ namespace StatisticsApp
 
         private void button7_Click(object sender, EventArgs e)
         {
-            string TestingInfo;
-            TestingInfo = "Testing Information\nFor testing the distribution of data, chi-square based frequency tests are used";
-            string InputInfo;
-            InputInfo = "Input Information\nData entry can be done in two ways \n1. Manual data entry to the grid \n2. Pasting the previously copied content from clipboard. Before pasting the content, appropriate number of rows have to be added on datagrid";
-            string TechInfo;
-            TechInfo = ".NET Framework 4.7.2";
-
-            MessageBox.Show(TestingInfo + "\n\n" + InputInfo + "\n\n" + TechInfo);
+            ViewingHelp();
         }
     }
 }
