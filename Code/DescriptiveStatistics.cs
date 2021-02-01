@@ -36,17 +36,15 @@ namespace StatisticsApp
 {
     public partial class DescriptiveStatistics : Form
     {
-        // tanımlar
+        // definitions
         int N;
         double[] DataSet;
-
         double MinimumValue;
         double MaximumValue;
         double Range;
         double Mean;
         double StandartDeviation;
         double Skewness;
-
         double Z;
         bool DatasetNormal;
         bool DatasetExponential;
@@ -219,7 +217,8 @@ namespace StatisticsApp
             }
             Mean = Total / N;
             Mean = Math.Round(Mean, 2);
-
+            label7.Text = Mean.ToString();
+            
             // calculating standart deviation
             StandartDeviation = 0;
             double SumOfSquares = 0;
@@ -229,6 +228,7 @@ namespace StatisticsApp
             }
             StandartDeviation = Math.Sqrt(SumOfSquares / N);
             StandartDeviation = Math.Round(StandartDeviation, 2);
+            label8.Text = StandartDeviation.ToString();
 
             // calculating skewness
             Skewness = 0;
@@ -245,6 +245,7 @@ namespace StatisticsApp
             payda = Math.Pow(Math.Sqrt(paydaTotal / (N - 1)), 3);
             Skewness = pay / payda;
             Skewness = Math.Round(Skewness, 2);
+            label9.Text = Skewness.ToString();
         }
 
         void TestingNormalDistribution()
@@ -387,9 +388,6 @@ namespace StatisticsApp
                 TransferringData();
                 PlottingHistogram();
                 CalculatingParameters();
-                label7.Text = Mean.ToString();
-                label8.Text = StandartDeviation.ToString();
-                label9.Text = Skewness.ToString();
             }
             catch (Exception ex)
             {
