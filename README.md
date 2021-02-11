@@ -1,5 +1,5 @@
-# StatisticsApp  
-Windows Desktop Application for Statistical Data Analysis ![release](https://img.shields.io/github/v/release/AliOzgurDede/StatisticsApp?color=Orange)
+# StatisticsApp ![release](https://img.shields.io/github/v/release/AliOzgurDede/StatisticsApp?color=Orange)
+Windows Desktop Application for Statistical Data Analysis  
 
 <img width="131" alt="StatisticsApp Logo" src="https://user-images.githubusercontent.com/74831928/104771978-b2fa1c00-5783-11eb-9bc1-2d6b5c4d38db.png">    
 
