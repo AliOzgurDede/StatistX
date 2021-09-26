@@ -51,6 +51,7 @@ namespace StatisticsApp
         double ChiSquareValue;
         double CriticalValue;
         int DegreeOfFreedom;
+        bool InputTabOpen;
 
         Dictionary<double, double> ChiSquareTable = new Dictionary<double, double>();
         void GeneratingChiSquareTable()
@@ -96,8 +97,9 @@ namespace StatisticsApp
 
         private void DescriptiveStatistics_Load(object sender, EventArgs e)
         {
+            InputTabOpen = false;
+            panel1.Visible = false;
             GeneratingChiSquareTable();
-            tableLayoutPanel2.Visible = false;
         }
 
         void AddRowsToGrid()
@@ -162,6 +164,8 @@ namespace StatisticsApp
 
         void PlottingHistogram()
         {
+            // cleaning histogram
+            this.Histogram.Series["Histogram"].Points.Clear();
             // sorting the data elements in increasing order
             Array.Sort(DataSet);
             // calculating range of data
@@ -250,6 +254,10 @@ namespace StatisticsApp
             Skewness = pay / payda;
             Skewness = Math.Round(Skewness, 2);
             label9.Text = Skewness.ToString();
+
+            // range and size
+            label13.Text = Range.ToString();
+            label11.Text = N.ToString();
         }
 
         void TestingNormalDistribution()
@@ -345,18 +353,6 @@ namespace StatisticsApp
             this.Hide();
         }
 
-        void ViewingHelp()
-        {
-            string TestingInfo;
-            TestingInfo = "Testing Information\nFor testing the distribution of data, chi-square based frequency tests are used";
-            string InputInfo;
-            InputInfo = "Input Information\nData entry can be done in two ways \n1. Manual data entry to the grid \n2. Pasting the previously copied content from clipboard. Before pasting the content, appropriate number of rows have to be added on datagrid";
-            string TechInfo;
-            TechInfo = ".NET Framework 4.7.2";
-
-            MessageBox.Show(TestingInfo + "\n\n" + InputInfo + "\n\n" + TechInfo);
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             if (textBox1.Text == "")
@@ -386,14 +382,22 @@ namespace StatisticsApp
 
         private void button7_Click(object sender, EventArgs e)
         {
-            ViewingHelp();
+            if (InputTabOpen == true)
+            {
+                panel1.Visible = false;
+                InputTabOpen = false;
+            }
+            else if (InputTabOpen == false)
+            {
+                panel1.Visible = true;
+                InputTabOpen = true;
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             try
             {
-                tableLayoutPanel2.Visible = true;
                 TransferringData();
                 PlottingHistogram();
                 CalculatingParameters();
@@ -406,34 +410,41 @@ namespace StatisticsApp
 
         private void button6_Click(object sender, EventArgs e)
         {
-            if (listBox1.SelectedIndex == -1)
+            if (label7.Text == "-")
             {
-                MessageBox.Show("Please select the type of distribution");
+                MessageBox.Show("Data analysis must be conducted");
             }
             else
             {
-                if (listBox1.SelectedItem.ToString() == "Normal Distribution")
+                if (listBox1.SelectedIndex == -1)
                 {
-                    TestingNormalDistribution();
-                    if (DatasetNormal == true)
-                    {
-                        MessageBox.Show("Data are normally distributed");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Data are not normally distributed");
-                    }
+                    MessageBox.Show("Please select the type of distribution");
                 }
-                else if (listBox1.SelectedItem.ToString() == "Exponential Distribution")
+                else
                 {
-                    TestingExponentialDistribution();
-                    if (DatasetExponential == true)
+                    if (listBox1.SelectedItem.ToString() == "Normal Distribution")
                     {
-                        MessageBox.Show("Data are exponentially distributed");
+                        TestingNormalDistribution();
+                        if (DatasetNormal == true)
+                        {
+                            MessageBox.Show("Data are normally distributed");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Data are not normally distributed");
+                        }
                     }
-                    else
+                    else if (listBox1.SelectedItem.ToString() == "Exponential Distribution")
                     {
-                        MessageBox.Show("Data are not exponentially distributed");
+                        TestingExponentialDistribution();
+                        if (DatasetExponential == true)
+                        {
+                            MessageBox.Show("Data are exponentially distributed");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Data are not exponentially distributed");
+                        }
                     }
                 }
             }
