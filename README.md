@@ -17,12 +17,9 @@ Revealing the information about a data set with analytical approach: Calculating
 * Inferential Statistics Module  
 Investigating whether the sample data represents the population data or not.  
 
-* Time Series Analysis Module  
-Tracking a data set beyond time, Constructing linear regression models and viewing moving averages graph, Analyzing correlation between two data sets  
+<img width="600" alt="DescriptiveStatistics ScreenShot" src="https://user-images.githubusercontent.com/74831928/134800973-c69fc40c-9c18-4fbc-82fe-512c5ba22bcf.JPG">  
 
-<img width="600" alt="DescriptiveStatistics ScreenShot" src="https://user-images.githubusercontent.com/74831928/104773003-6adbf900-5785-11eb-8627-dd8f701cfd55.JPG">  
-
-<img width="600" alt="TimeSeriesAnalysis ScreenShot" src="https://user-images.githubusercontent.com/74831928/104773702-83004800-5786-11eb-88e1-3344a2587750.JPG">
+<img width="600" alt="InferentialStatistics ScreenShot" src="https://user-images.githubusercontent.com/74831928/134801108-7db9ea99-af11-44cb-a578-3732f6ad273d.JPG">
 
 ## Used Technologies
 Visual Studio  
