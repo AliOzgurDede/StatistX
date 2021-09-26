@@ -46,6 +46,9 @@ namespace StatisticsApp
         string TestType;
         Dictionary<double, double> Zvalues = new Dictionary<double, double>();
         bool Hypothesis;
+        bool InputTabOpen;
+        double TestStatistic;
+        double CriticalValue;
 
         public InferentialStatistics()
         {
@@ -54,7 +57,10 @@ namespace StatisticsApp
 
         private void InferentialStatistics_Load(object sender, EventArgs e)
         {
-
+            pictureBox5.Visible = false;
+            pictureBox6.Visible = false;
+            InputTabOpen = false;
+            panel7.Visible = false;
         }
 
         void GeneratingZvalues()
@@ -79,16 +85,16 @@ namespace StatisticsApp
 
         void Ztest()
         {
-            double TestStatistic = 0;
+            TestStatistic = 0;
             TestStatistic = (SampleMean - PopulationMean) / (PopulationStandartDeviation / Math.Sqrt(SampleSize));
-            double CriticalValue = 0;
+            CriticalValue = 0;
             if (TestType == "One Tailed")
             {
                 CriticalValue = Zvalues[Significance];
             }
             else if (TestType == "Two Tailed")
             {
-                CriticalValue = Zvalues[Significance] / 2;
+                CriticalValue = Zvalues[Significance / 2];
             }
             if (Math.Abs(TestStatistic) > Math.Abs(CriticalValue))
             {
@@ -97,28 +103,6 @@ namespace StatisticsApp
             else
             {
                 Hypothesis = true;
-            }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (textBox1.Text == " " || textBox2.Text == " " || textBox3.Text == " " || textBox4.Text == " " || textBox5.Text == " " || listBox1.SelectedIndex == -1 || listBox2.SelectedIndex == -1)
-            {
-                MessageBox.Show("There are missing inputs");
-            }
-            else
-            {
-                GeneratingZvalues();
-                TakingUserOptions();
-                Ztest();
-                if (Hypothesis == true)
-                {
-                    MessageBox.Show("Population data are represented by sample data");
-                }
-                else if (Hypothesis == false)
-                {
-                    MessageBox.Show("Population data are not represented by sample data");
-                }
             }
         }
 
@@ -134,6 +118,73 @@ namespace StatisticsApp
             InferentialStatistics yeniForm = new InferentialStatistics();
             yeniForm.Show();
             this.Hide();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            MainPage yeniForm = new MainPage();
+            yeniForm.Show();
+            this.Hide();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            InferentialStatistics yeniForm = new InferentialStatistics();
+            yeniForm.Show();
+            this.Hide();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (textBox1.Text == " " || textBox2.Text == " " || textBox3.Text == " " || textBox4.Text == " " || textBox5.Text == " " || listBox1.SelectedIndex == -1 || listBox2.SelectedIndex == -1)
+                {
+                    MessageBox.Show("There are missing inputs");
+                }
+                else
+                {
+                    GeneratingZvalues();
+                    TakingUserOptions();
+                    Ztest();
+                    label12.Text = CriticalValue.ToString();
+                    label13.Text = TestStatistic.ToString();
+                    if (Hypothesis == true)
+                    {
+                        label15.Text = "Hypothesis Accepted";
+                        pictureBox5.Visible = true;
+                        pictureBox6.Visible = false;
+                    }
+                    else if (Hypothesis == false)
+                    {
+                        label15.Text = "Hypothesis Rejected";
+                        pictureBox5.Visible = false;
+                        pictureBox6.Visible = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error, please refresh the page and try again");
+            }
+        }
+        
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (InputTabOpen == true)
+            {
+                panel7.Visible = false;
+                InputTabOpen = false;
+                this.pictureBox5.Location = new System.Drawing.Point(334, 23);
+                this.pictureBox6.Location = new System.Drawing.Point(334, 23);
+            }
+            else if (InputTabOpen == false)
+            {
+                panel7.Visible = true;
+                InputTabOpen = true;
+                this.pictureBox5.Location = new System.Drawing.Point(230, 23);
+                this.pictureBox6.Location = new System.Drawing.Point(230, 23);
+            }
         }
     }
 }
