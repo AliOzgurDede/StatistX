@@ -5,7 +5,7 @@ Windows Desktop Application for Statistical Data Analysis
 
 ## Motivation
 
-This application is a non-profit application developed by Ali Özgür Dede from Turkey, an industrial engineering/engineering management student who has adopted programming as a hobby.
+This application is a non-profit application developed by Ali Özgür Dede from Turkey, an industrial engineer who has adopted programming as a hobby.
 The aim of this project is, modeling an unknown data with "one-click" actions in a free and simple environment. 
 This application is for achieving data analysis objectives that are in college projects or minor business projects.
 
