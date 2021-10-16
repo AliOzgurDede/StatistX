@@ -1,13 +1,7 @@
-# StatisticsApp ![release](https://img.shields.io/github/v/release/AliOzgurDede/StatisticsApp?color=Orange)
+# StatisticsApp ![release](https://img.shields.io/badge/release-v2.0-brightgreen)
 Windows Desktop Application for Statistical Data Analysis  
 
 <img width="131" alt="StatisticsApp Logo" src="https://user-images.githubusercontent.com/74831928/104771978-b2fa1c00-5783-11eb-9bc1-2d6b5c4d38db.png">    
-
-## Motivation
-
-This application is a non-profit application developed by Ali Özgür Dede from Turkey, an industrial engineer who has adopted programming as a hobby.
-The aim of this project is, modeling an unknown data with "one-click" actions in a free and simple environment. 
-This application is for achieving data analysis objectives that are in college projects or minor business projects.
 
 ## Features
 
