@@ -1,4 +1,4 @@
-# StatisticsApp ![release](https://img.shields.io/badge/release-v2.0-brightgreen)
+# StatisticsX ![release](https://img.shields.io/badge/release-v2.0-brightgreen)
 Windows Desktop Application for Statistical Data Analysis  
 
 <img width="131" alt="StatisticsApp Logo" src="https://user-images.githubusercontent.com/74831928/104771978-b2fa1c00-5783-11eb-9bc1-2d6b5c4d38db.png">    
@@ -22,6 +22,3 @@ C#
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
-
-## Contact & Feedback
-info.statisticsapp@gmail.com
