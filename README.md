@@ -11,9 +11,9 @@ Revealing the information about a data set with analytical approach: Calculating
 * Inferential Statistics Module  
 Investigating whether the sample data represents the population data or not.  
 
-<img width="600" alt="DescriptiveStatistics ScreenShot" src="https://user-images.githubusercontent.com/74831928/134800973-c69fc40c-9c18-4fbc-82fe-512c5ba22bcf.JPG">  
+<img width="600" alt="DescriptiveStatistics ScreenShot" src="https://user-images.githubusercontent.com/74831928/152222049-10086fa2-6e40-4f0c-9908-5701ab0d596d.JPG">  
 
-<img width="600" alt="InferentialStatistics ScreenShot" src="https://user-images.githubusercontent.com/74831928/134801108-7db9ea99-af11-44cb-a578-3732f6ad273d.JPG">
+<img width="600" alt="InferentialStatistics ScreenShot" src="https://user-images.githubusercontent.com/74831928/152222150-902061b8-84f4-4835-8794-e03aca376089.JPG">
 
 ## Used Technologies
 Visual Studio  
