@@ -2,7 +2,7 @@
   <img width="131" alt="StatisticsX Logo" src="https://user-images.githubusercontent.com/74831928/104771978-b2fa1c00-5783-11eb-9bc1-2d6b5c4d38db.png">  
 </p>
 
-<h1 align="center" style="margin-top: 0px;">StatisticsX</h1>
+<h1 align="center" style="margin-top: 0px;">StatistX</h1>
 
 <div align="center">
   
