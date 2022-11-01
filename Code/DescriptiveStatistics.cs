@@ -28,11 +28,12 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace StatisticsApp
+namespace StatistX
 {
     public partial class DescriptiveStatistics : Form
     {
@@ -44,14 +45,11 @@ namespace StatisticsApp
         double Range;
         double Mean;
         double StandartDeviation;
-        double Skewness;
         double Z;
         bool DatasetNormal;
-        bool DatasetExponential;
         double ChiSquareValue;
         double CriticalValue;
         int DegreeOfFreedom;
-        bool InputTabOpen;
 
         Dictionary<double, double> ChiSquareTable = new Dictionary<double, double>();
         void GeneratingChiSquareTable()
@@ -88,18 +86,6 @@ namespace StatisticsApp
             ChiSquareTable.Add(28, 48.378);
             ChiSquareTable.Add(29, 49.588);
             ChiSquareTable.Add(30, 50.892);
-        }
-
-        public DescriptiveStatistics()
-        {
-            InitializeComponent();
-        }
-
-        private void DescriptiveStatistics_Load(object sender, EventArgs e)
-        {
-            InputTabOpen = false;
-            panel1.Visible = false;
-            GeneratingChiSquareTable();
         }
 
         void AddRowsToGrid()
@@ -225,8 +211,8 @@ namespace StatisticsApp
             }
             Mean = Total / N;
             Mean = Math.Round(Mean, 2);
-            label7.Text = Mean.ToString();
-            
+            label11.Text = Mean.ToString();
+
             // calculating standart deviation
             StandartDeviation = 0;
             double SumOfSquares = 0;
@@ -236,28 +222,22 @@ namespace StatisticsApp
             }
             StandartDeviation = Math.Sqrt(SumOfSquares / N);
             StandartDeviation = Math.Round(StandartDeviation, 2);
-            label8.Text = StandartDeviation.ToString();
-
-            // calculating skewness
-            Skewness = 0;
-            double payTotal = 0;
-            double paydaTotal = 0;
-            double pay = 0;
-            double payda = 0;
-            for (int i = 0; i < N; i++)
-            {
-                payTotal = payTotal + Math.Pow(DataSet[i] - Mean, 3);
-                paydaTotal = paydaTotal + Math.Pow(DataSet[i] - Mean, 2);
-            }
-            pay = payTotal / N;
-            payda = Math.Pow(Math.Sqrt(paydaTotal / (N - 1)), 3);
-            Skewness = pay / payda;
-            Skewness = Math.Round(Skewness, 2);
-            label9.Text = Skewness.ToString();
+            label9.Text = StandartDeviation.ToString();
 
             // range and size
-            label13.Text = Range.ToString();
-            label11.Text = N.ToString();
+            label10.Text = Range.ToString();
+            label7.Text = N.ToString();
+
+            // dsitribution test
+            TestingNormalDistribution();
+            if (DatasetNormal == true)
+            {
+                label8.Text = "Normal";
+            }
+            else
+            {
+                label8.Text = "Not Normal";
+            }
         }
 
         void TestingNormalDistribution()
@@ -326,128 +306,117 @@ namespace StatisticsApp
             }
         }
 
-        void TestingExponentialDistribution()
+        public DescriptiveStatistics()
         {
-            TestingNormalDistribution();
-            if (DatasetNormal == false && Skewness > 1)
-            {
-                DatasetExponential = true;
-            }
-            else
-            {
-                DatasetExponential = false;
-            }
+            InitializeComponent();
         }
 
-        void RefreshingPage()
+        private void DescriptiveStatistics_Load(object sender, EventArgs e)
         {
-            DescriptiveStatistics yeniForm = new DescriptiveStatistics();
-            yeniForm.Show();
+            GeneratingChiSquareTable();
+        }
+
+        private void DescriptiveStatistics_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void BackButtonPic_Click(object sender, EventArgs e)
+        {
+            MainPage mainPage = new MainPage();
+            mainPage.Show();
             this.Hide();
         }
 
-        void ReturningToMainPage()
+        private void BackButton_Click(object sender, EventArgs e)
         {
-            MainPage yeniForm = new MainPage();
-            yeniForm.Show();
+            MainPage mainPage = new MainPage();
+            mainPage.Show();
             this.Hide();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void RefreshButton_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text == "")
+            DescriptiveStatistics descriptiveStatistics = new DescriptiveStatistics();
+            descriptiveStatistics.Show();
+            this.Hide();
+        }
+
+        private void RefreshButtonPic_Click(object sender, EventArgs e)
+        {
+            DescriptiveStatistics descriptiveStatistics = new DescriptiveStatistics();
+            descriptiveStatistics.Show();
+            this.Hide();
+        }
+
+        private void InputButton_Click(object sender, EventArgs e)
+        {
+            if (this.InputPanel.Visible == false)
             {
-                MessageBox.Show("Missing information, number of the rows");
+                this.InputPanel.Visible = true;
             }
-            else
+            else if (this.InputPanel.Visible == true)
             {
-                AddRowsToGrid();
-            }
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            PasteFromClipboard();
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            ReturningToMainPage();
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            RefreshingPage();
-        }
-
-        private void button7_Click(object sender, EventArgs e)
-        {
-            if (InputTabOpen == true)
-            {
-                panel1.Visible = false;
-                InputTabOpen = false;
-            }
-            else if (InputTabOpen == false)
-            {
-                panel1.Visible = true;
-                InputTabOpen = true;
+                this.InputPanel.Visible = false;
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void InputButtonPic_Click(object sender, EventArgs e)
+        {
+            if (this.InputPanel.Visible == false)
+            {
+                this.InputPanel.Visible = true;
+            }
+            else if (this.InputPanel.Visible == true)
+            {
+                this.InputPanel.Visible = false;
+            }
+        }
+
+        private void AnalyzeButtonPic_Click(object sender, EventArgs e)
         {
             try
             {
                 TransferringData();
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show(x.Message);
+                return;
+            }
+            finally
+            {
                 PlottingHistogram();
                 CalculatingParameters();
             }
-            catch (Exception ex)
+        }
+
+        private void AnalyzeButton_Click(object sender, EventArgs e)
+        {
+            try
             {
-                MessageBox.Show("Error, please refresh the page and try again");
+                TransferringData();
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show(x.Message);
+                return;
+            }
+            finally
+            {
+                PlottingHistogram();
+                CalculatingParameters();
             }
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void PasteFromClipboardButton_Click(object sender, EventArgs e)
         {
-            if (label7.Text == "-")
-            {
-                MessageBox.Show("Data analysis must be conducted");
-            }
-            else
-            {
-                if (listBox1.SelectedIndex == -1)
-                {
-                    MessageBox.Show("Please select the type of distribution");
-                }
-                else
-                {
-                    if (listBox1.SelectedItem.ToString() == "Normal Distribution")
-                    {
-                        TestingNormalDistribution();
-                        if (DatasetNormal == true)
-                        {
-                            MessageBox.Show("Data are normally distributed");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Data are not normally distributed");
-                        }
-                    }
-                    else if (listBox1.SelectedItem.ToString() == "Exponential Distribution")
-                    {
-                        TestingExponentialDistribution();
-                        if (DatasetExponential == true)
-                        {
-                            MessageBox.Show("Data are exponentially distributed");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Data are not exponentially distributed");
-                        }
-                    }
-                }
-            }
+            PasteFromClipboard();
+        }
+
+        private void AddRowsToGridButton_Click(object sender, EventArgs e)
+        {
+            AddRowsToGrid();
         }
     }
 }
