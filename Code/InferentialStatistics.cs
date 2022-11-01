@@ -32,7 +32,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace StatisticsApp
+namespace StatistX
 {
     public partial class InferentialStatistics : Form
     {
@@ -49,19 +49,6 @@ namespace StatisticsApp
         bool InputTabOpen;
         double TestStatistic;
         double CriticalValue;
-
-        public InferentialStatistics()
-        {
-            InitializeComponent();
-        }
-
-        private void InferentialStatistics_Load(object sender, EventArgs e)
-        {
-            pictureBox5.Visible = false;
-            pictureBox6.Visible = false;
-            InputTabOpen = false;
-            panel7.Visible = false;
-        }
 
         void GeneratingZvalues()
         {
@@ -106,84 +93,132 @@ namespace StatisticsApp
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        public InferentialStatistics()
         {
-            MainPage yeniForm = new MainPage();
-            yeniForm.Show();
+            InitializeComponent();
+        }
+
+        private void InferentialStatistics_Load(object sender, EventArgs e)
+        {
+            GeneratingZvalues();
+        }
+
+        private void InferentialStatistics_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void BackButtonPic_Click(object sender, EventArgs e)
+        {
+            MainPage mainPage = new MainPage();
+            mainPage.Show();
             this.Hide();
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void BackButton_Click(object sender, EventArgs e)
         {
-            InferentialStatistics yeniForm = new InferentialStatistics();
-            yeniForm.Show();
+            MainPage mainPage = new MainPage();
+            mainPage.Show();
             this.Hide();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void RefreshButton_Click(object sender, EventArgs e)
         {
-            MainPage yeniForm = new MainPage();
-            yeniForm.Show();
+            InferentialStatistics ınferentialStatistics = new InferentialStatistics();
+            ınferentialStatistics.Show();
             this.Hide();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void RefreshButtonPic_Click(object sender, EventArgs e)
         {
-            InferentialStatistics yeniForm = new InferentialStatistics();
-            yeniForm.Show();
+            InferentialStatistics ınferentialStatistics = new InferentialStatistics();
+            ınferentialStatistics.Show();
             this.Hide();
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void InputButton_Click(object sender, EventArgs e)
+        {
+            if (this.InputPanel.Visible == false)
+            {
+                this.InputPanel.Visible = true;
+            }
+            else if (this.InputPanel.Visible == true)
+            {
+                this.InputPanel.Visible = false;
+            }
+        }
+
+        private void InputButtonPic_Click(object sender, EventArgs e)
+        {
+            if (this.InputPanel.Visible == false)
+            {
+                this.InputPanel.Visible = true;
+            }
+            else if (this.InputPanel.Visible == true)
+            {
+                this.InputPanel.Visible = false;
+            }
+        }
+
+        private void AnalyzeButton_Click(object sender, EventArgs e)
         {
             try
             {
-                if (textBox1.Text == " " || textBox2.Text == " " || textBox3.Text == " " || textBox4.Text == " " || textBox5.Text == " " || listBox1.SelectedIndex == -1 || listBox2.SelectedIndex == -1)
-                {
-                    MessageBox.Show("There are missing inputs");
-                }
-                else
-                {
-                    GeneratingZvalues();
-                    TakingUserOptions();
-                    Ztest();
-                    label12.Text = CriticalValue.ToString();
-                    label13.Text = TestStatistic.ToString();
-                    if (Hypothesis == true)
-                    {
-                        label15.Text = "Hypothesis Accepted";
-                        pictureBox5.Visible = true;
-                        pictureBox6.Visible = false;
-                    }
-                    else if (Hypothesis == false)
-                    {
-                        label15.Text = "Hypothesis Rejected";
-                        pictureBox5.Visible = false;
-                        pictureBox6.Visible = true;
-                    }
-                }
+                TakingUserOptions();
             }
-            catch (Exception ex)
+            catch (Exception x)
             {
-                MessageBox.Show("Error, please refresh the page and try again");
+                MessageBox.Show(x.Message);
+                return;
+            }
+            finally
+            {
+                Ztest();
+                label15.Text = CriticalValue.ToString();
+                label16.Text = TestStatistic.ToString();
+                if (Hypothesis == true)
+                {
+                    label17.Text = "Hypothesis Accepted";
+                    this.HypothesisTruePicture.Visible = true;
+                    this.HypothesisFalsePicture.Visible = false;
+                }
+                else if (Hypothesis == false)
+                {
+                    label17.Text = "Hypothesis Rejected";
+                    this.HypothesisTruePicture.Visible = false;
+                    this.HypothesisFalsePicture.Visible = true;
+                }
             }
         }
-        
-        private void button7_Click(object sender, EventArgs e)
+
+        private void AnalyzeButtonPic_Click(object sender, EventArgs e)
         {
-            if (InputTabOpen == true)
+            try
             {
-                panel7.Visible = false;
-                InputTabOpen = false;
-                this.pictureBox5.Location = new System.Drawing.Point(334, 23);
-                this.pictureBox6.Location = new System.Drawing.Point(334, 23);
+                TakingUserOptions();
             }
-            else if (InputTabOpen == false)
+            catch (Exception x)
             {
-                panel7.Visible = true;
-                InputTabOpen = true;
-                this.pictureBox5.Location = new System.Drawing.Point(230, 23);
-                this.pictureBox6.Location = new System.Drawing.Point(230, 23);
+                MessageBox.Show(x.Message);
+                return;
+            }
+            finally
+            {
+                Ztest();
+                label15.Text = CriticalValue.ToString();
+                label16.Text = TestStatistic.ToString();
+                if (Hypothesis == true)
+                {
+                    label17.Text = "Hypothesis Accepted";
+                    this.HypothesisTruePicture.Visible = true;
+                    this.HypothesisFalsePicture.Visible = false;
+                }
+                else if (Hypothesis == false)
+                {
+                    label17.Text = "Hypothesis Rejected";
+                    this.HypothesisTruePicture.Visible = false;
+                    this.HypothesisFalsePicture.Visible = true;
+                }
             }
         }
     }
